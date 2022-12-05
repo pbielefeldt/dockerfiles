@@ -1,4 +1,4 @@
-FROM registry.opensuse.org/opensuse/leap:15.3
+FROM registry.opensuse.org/opensuse/leap:15.4
 
 RUN zypper install -y texlive-scheme-basic && \
     zypper install -y texlive-yhmath \
@@ -93,7 +93,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-fltpoint-doc \
     texlive-cmexb-fonts \
     texlive-pdflatexpicscale-doc \
-    texlive-babel-spanglish-doc \
     texlive-mychemistry \
     texlive-palatino \
     texlive-mhequ \
@@ -147,13 +146,11 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-latex2man-doc \
     texlive-context \
     texlive-amsmath-doc \
-    texlive-wasy2-ps-fonts \
     texlive-nath-doc \
     texlive-preview \
     texlive-extpfeil-doc \
     texlive-hyphen-uppersorbian \
     texlive-xespotcolor-doc \
-    texlive-wasy2-ps \
     texlive-codicefiscaleitaliano \
     texlive-context-notes-zh-cn \
     texlive-babel-friulan-doc \
@@ -419,7 +416,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-delim \
     texlive-randomlist \
     texlive-curves-doc \
-    texlive-wasy2-ps-doc \
     texlive-charter \
     texlive-chemmacros \
     texlive-arydshln-doc \
@@ -595,7 +591,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-hrlatex \
     texlive-was \
     texlive-epstopdf \
-    texlive-spanish-mx-doc \
     texlive-latexpand-doc \
     texlive-concrete-doc \
     texlive-raleway-doc \
@@ -870,7 +865,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-float \
     texlive-microtype-doc \
     texlive-dvicopy-bin \
-    texlive-spanish-mx \
     texlive-mdframed \
     texlive-utf8mex-doc \
     texlive-expressg-doc \
@@ -1873,7 +1867,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-cc-pl-fonts \
     texlive-babel-samin-doc \
     texlive-context-algorithmic \
-    texlive-babel-spanglish \
     texlive-hyphen-polish \
     texlive-ocgx2 \
     texlive-fvextra-doc \

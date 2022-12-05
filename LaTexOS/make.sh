@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TAGNAME="pbielefeldt/latexos:latest"
+TAGNAME="pbielefeldt/latexos:15.4"
 
 docker build --platform linux/amd64 --tag ${TAGNAME} .
 
