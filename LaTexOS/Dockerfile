@@ -1,6 +1,5 @@
-FROM opensuse/leap
+FROM registry.opensuse.org/opensuse/leap:15.3
 
-RUN zypper update -y &
 RUN zypper install -y texlive-scheme-basic && \
     zypper install -y texlive-yhmath \
     texlive-udesoftec-doc \
@@ -2193,5 +2192,3 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-metaplot-doc \
     texlive-tamethebeast && \
     zypper install -y make
-#
-# CMD ["rpm -qa | grep texlive-*"]
