@@ -2070,4 +2070,5 @@ RUN zypper install -y texlive-yhmath \
     texlive-synctex \
     texlive-metaplot-doc \
     texlive-tamethebeast
+RUN zypper install -y perl-Parse-RecDescent
 RUN zypper install -y make
