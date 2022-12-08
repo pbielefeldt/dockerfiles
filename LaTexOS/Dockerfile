@@ -1,7 +1,7 @@
-FROM registry.opensuse.org/opensuse/leap:15.3
+FROM registry.opensuse.org/opensuse/leap:15.4
 
-RUN zypper install -y texlive-scheme-basic && \
-    zypper install -y texlive-yhmath \
+RUN zypper install -y texlive-scheme-basic
+RUN zypper install -y texlive-yhmath \
     texlive-udesoftec-doc \
     texlive-dviincl \
     texlive-midnight-doc \
@@ -27,10 +27,8 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-mweights \
     texlive-fonts-tlwg-doc \
     texlive-memoir \
-    texlive-babel-turkish-doc \
     texlive-tex4ebook \
     texlive-latex2nemeth \
-    texlive-babel-icelandic \
     texlive-psnfss-doc \
     texlive-mathdots \
     texlive-glossaries-german-doc \
@@ -54,7 +52,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-ulem \
     texlive-csbulletin \
     texlive-upquote \
-    texlive-sympytexpackage-doc \
     texlive-mkjobtexmf-doc \
     texlive-gates \
     texlive-luacode-doc \
@@ -83,7 +80,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-euenc-doc \
     texlive-tex-gyre-math-fonts \
     texlive-needspace-doc \
-    texlive-babel-croatian-doc \
     texlive-context-typearea \
     texlive-unisugar \
     texlive-xpatch-doc \
@@ -93,11 +89,8 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-fltpoint-doc \
     texlive-cmexb-fonts \
     texlive-pdflatexpicscale-doc \
-    texlive-babel-spanglish-doc \
-    texlive-mychemistry \
     texlive-palatino \
     texlive-mhequ \
-    texlive-babel-romansh \
     texlive-latexindent \
     texlive-gates-doc \
     texlive-przechlewski-book-doc \
@@ -147,16 +140,13 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-latex2man-doc \
     texlive-context \
     texlive-amsmath-doc \
-    texlive-wasy2-ps-fonts \
     texlive-nath-doc \
     texlive-preview \
     texlive-extpfeil-doc \
     texlive-hyphen-uppersorbian \
     texlive-xespotcolor-doc \
-    texlive-wasy2-ps \
     texlive-codicefiscaleitaliano \
     texlive-context-notes-zh-cn \
-    texlive-babel-friulan-doc \
     texlive-fonts-tlwg-fonts \
     texlive-pdfbook2-doc \
     texlive-nevelok \
@@ -171,10 +161,8 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-gfnotation-doc \
     texlive-units \
     texlive-seetexk \
-    texlive-babel-finnish \
     texlive-boondox \
     texlive-bohr-doc \
-    texlive-tetex-bin \
     texlive-quran-doc \
     texlive-lithuanian \
     texlive-hyplain-doc \
@@ -221,9 +209,7 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-interval \
     texlive-rsfs-fonts \
     texlive-bibleref-french \
-    texlive-pstools \
     texlive-piechartmp \
-    texlive-babel-estonian-doc \
     texlive-finstrut-doc \
     texlive-yhmath-doc \
     texlive-path-doc \
@@ -236,7 +222,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-background-doc \
     texlive-frontespizio-doc \
     texlive-present-doc \
-    texlive-babel-norsk \
     texlive-latex-git-log \
     texlive-tikz-3dplot \
     texlive-latex-bin \
@@ -293,13 +278,11 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-odsfile-doc \
     texlive-xstring-doc \
     texlive-findhyph-doc \
-    texlive-babel-irish-doc \
     texlive-olsak-misc \
     texlive-ncctools \
     texlive-context-bnf \
     texlive-bguq-fonts \
     texlive-conteq \
-    texlive-babel-turkish \
     texlive-pkfix-doc \
     texlive-frletter-doc \
     texlive-bbold-doc \
@@ -307,7 +290,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-pdftex-bin \
     texlive-todonotes \
     texlive-thmbox \
-    texlive-babel-catalan \
     texlive-pst-plot-doc \
     texlive-gustlib-doc \
     texlive-bpchem-doc \
@@ -318,7 +300,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-sauerj-doc \
     texlive-itnumpar-doc \
     texlive-chemschemex-doc \
-    texlive-latex-bib2-ex \
     texlive-bidi-atbegshi \
     texlive-xdvi-bin \
     texlive-gastex \
@@ -360,7 +341,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-plainpkg \
     texlive-oberdiek-doc \
     texlive-lm-fonts \
-    texlive-babel-hebrew-doc \
     texlive-context-inifile \
     texlive-bibunits \
     texlive-thumbpdf \
@@ -370,7 +350,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-pict2e-doc \
     texlive-bbding-doc \
     texlive-collection-context \
-    texlive-babel-irish \
     texlive-luatex \
     texlive-turnstile \
     texlive-glossaries-english-doc \
@@ -408,7 +387,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-mathtools-doc \
     texlive-everyhook \
     texlive-tkz-tab-doc \
-    texlive-ifluatex \
     texlive-drawmatrix-doc \
     texlive-fpl \
     texlive-asymptote-bin \
@@ -419,7 +397,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-delim \
     texlive-randomlist \
     texlive-curves-doc \
-    texlive-wasy2-ps-doc \
     texlive-charter \
     texlive-chemmacros \
     texlive-arydshln-doc \
@@ -432,11 +409,9 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-ytableau-doc \
     texlive-dvipng \
     texlive-context-degrade \
-    texlive-babel-norsk-doc \
     texlive-pgfplots-doc \
     texlive-formation-latex-ul-doc \
     texlive-autobreak \
-    texlive-babel-samin \
     texlive-mfpic4ode \
     texlive-unicode-data \
     texlive-chemstyle \
@@ -453,7 +428,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-insbox-doc \
     texlive-numprint \
     texlive-purifyeps \
-    texlive-latex-tabellen \
     texlive-interchar \
     texlive-cite-doc \
     texlive-sourcecodepro-doc \
@@ -491,14 +465,12 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-arara-doc \
     texlive-bookman \
     texlive-extarrows-doc \
-    texlive-presentations-en \
     texlive-notoccite-doc \
     texlive-collectbox \
     texlive-xevlna-doc \
     texlive-hyphen-piedmontese \
     texlive-context-rst \
     texlive-fontawesome-fonts \
-    texlive-babel-latin-doc \
     texlive-luatexbase \
     texlive-font-change-xetex-doc \
     texlive-needspace \
@@ -521,7 +493,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-resumemac-doc \
     texlive-Type1fonts \
     texlive-pbox \
-    texlive-tetex \
     texlive-chktex-doc \
     texlive-cjk \
     texlive-l3experimental-doc \
@@ -557,7 +528,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-enumitem-doc \
     texlive-animate-doc \
     texlive-printlen \
-    texlive-pdftools-bin \
     texlive-amsmath \
     texlive-hyphen-swedish \
     texlive-xetex-itrans-doc \
@@ -595,7 +565,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-hrlatex \
     texlive-was \
     texlive-epstopdf \
-    texlive-spanish-mx-doc \
     texlive-latexpand-doc \
     texlive-concrete-doc \
     texlive-raleway-doc \
@@ -631,7 +600,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-pl \
     texlive-ntheorem-doc \
     texlive-pkfix-bin \
-    texlive-babel-french-doc \
     texlive-context-mathsets \
     texlive-fpl-fonts \
     texlive-booktabs-de \
@@ -642,7 +610,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-mpattern \
     texlive-barr-doc \
     texlive-tex4ebook-bin \
-    texlive-babel-latvian \
     texlive-ribbonproofs \
     texlive-ghsystem-doc \
     texlive-extratools \
@@ -652,7 +619,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-biber-bin \
     texlive-amsldoc-it \
     texlive-siunitx \
-    texlive-ifetex-doc \
     texlive-xltxtra \
     texlive-revtex4-doc \
     texlive-latexcheat-de \
@@ -694,14 +660,11 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-arabxetex-doc \
     texlive-tex-gyre-fonts \
     texlive-fancyvrb-doc \
-    texlive-babel-czech-doc \
     texlive-hyphen-portuguese \
     texlive-marvosym-fonts \
     texlive-floatrow-doc \
-    texlive-babel-kurmanji-doc \
     texlive-cm-super-fonts \
     texlive-fontwrap-doc \
-    texlive-babel-spanish-doc \
     texlive-gastex-doc \
     texlive-begriff-doc \
     texlive-gobble-doc \
@@ -725,7 +688,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-context-lettrine-doc \
     texlive-crop-doc \
     texlive-delimset-doc \
-    texlive-ifxetex \
     texlive-pfarrei \
     texlive-amstex-bin \
     texlive-ucharcat-doc \
@@ -742,7 +704,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-revquantum \
     texlive-latex-papersize-bin \
     texlive-xcolor-doc \
-    texlive-babel-slovak \
     texlive-correctmathalign \
     texlive-nodetree-doc \
     texlive-plain-doc \
@@ -769,9 +730,7 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-plain \
     texlive-babel-italian \
     texlive-pst-3d-doc \
-    texlive-math-e \
     texlive-sauerj \
-    texlive-babel-bosnian \
     texlive-pstricks-doc \
     texlive-lshort-finnish \
     texlive-moderncv \
@@ -819,7 +778,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-tex-overview \
     texlive-pst-text \
     texlive-ttfutils-doc \
-    texlive-einfuehrung2 \
     texlive-dvipdfmx-doc \
     texlive-adjustbox-doc \
     texlive-placeat \
@@ -828,13 +786,10 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-tipa-fonts \
     texlive-euro-ce-doc \
     texlive-comprehensive \
-    texlive-babel-breton-doc \
     texlive-hyphen-slovak \
     texlive-feynmf-doc \
-    texlive-babel-icelandic-doc \
     texlive-courier-fonts \
     texlive-fnpara-doc \
-    texlive-babel-slovak-doc \
     texlive-forloop-doc \
     texlive-bbm-macros-doc \
     texlive-latexpand \
@@ -870,7 +825,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-float \
     texlive-microtype-doc \
     texlive-dvicopy-bin \
-    texlive-spanish-mx \
     texlive-mdframed \
     texlive-utf8mex-doc \
     texlive-expressg-doc \
@@ -894,18 +848,14 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-hyphen-friulan \
     texlive-context-fancybreak \
     texlive-dvips-bin \
-    texlive-pdftools-doc \
     texlive-bib-fr \
     texlive-nag \
     texlive-diffcoeff \
-    texlive-pdftools \
     texlive-hyphen-base \
     texlive-placeat-doc \
-    texlive-babel-scottish \
     texlive-mfpic \
     texlive-bpchem \
     texlive-psfrag-doc \
-    texlive-babel-hungarian \
     texlive-mathpunctspace \
     texlive-tkz-tab \
     texlive-glossaries-english \
@@ -921,7 +871,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-philokalia \
     texlive-sciposter-doc \
     texlive-srcredact \
-    texlive-latex-referenz \
     texlive-mathpartir \
     texlive-zapfchan \
     texlive-bidi \
@@ -968,10 +917,8 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-impnattypo \
     texlive-feupphdteses-doc \
     texlive-metapost-fonts \
-    texlive-babel-finnish-doc \
     texlive-fmtcount-doc \
     texlive-context-fonts \
-    texlive-babel-piedmontese-doc \
     texlive-forest-doc \
     texlive-backnaur-doc \
     texlive-gene-logic-doc \
@@ -1019,7 +966,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-chickenize \
     texlive-wrapfig-doc \
     texlive-sciposter \
-    texlive-presentations \
     texlive-colorsep \
     texlive-ntgclass-doc \
     texlive-environ \
@@ -1039,13 +985,11 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-ghsystem \
     texlive-elements \
     texlive-microtype-de \
-    texlive-babel-romanian \
     texlive-polski-doc \
     texlive-metafont \
     texlive-textgreek \
     texlive-skmath \
     texlive-mattens \
-    texlive-babel-friulan \
     texlive-pst-coil-doc \
     texlive-glossaries-german \
     texlive-texdirflatten-bin \
@@ -1073,7 +1017,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-suanpan-doc \
     texlive-xii \
     texlive-computational-complexity \
-    texlive-geometry-de \
     texlive-psfrag \
     texlive-tablor-doc \
     texlive-typeoutfileinfo-bin \
@@ -1081,7 +1024,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-parallel \
     texlive-biocon \
     texlive-fontaxes \
-    texlive-texconfig-doc \
     texlive-translation-arsclassica-de \
     texlive-makecmds-doc \
     texlive-bohr \
@@ -1093,7 +1035,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-engtlc \
     texlive-collection-latexrecommended \
     texlive-turnstile-doc \
-    texlive-tabulars-e \
     texlive-e-french-doc \
     texlive-mp3d-doc \
     texlive-algorithm2e-doc \
@@ -1103,13 +1044,9 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-uhc-fonts \
     texlive-arphic-doc \
     texlive-everyhook-doc \
-    texlive-babel-dutch-doc \
-    texlive-babel-macedonian-doc \
     texlive-fntproof-doc \
     texlive-dvips \
-    texlive-babel-welsh-doc \
     texlive-fouridx-doc \
-    texlive-bezos-doc \
     texlive-germbib-doc \
     texlive-binomexp-doc \
     texlive-graphics-pln-doc \
@@ -1174,13 +1111,11 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-collection-langgerman \
     texlive-mkpattern \
     texlive-plainpkg-doc \
-    texlive-babel-piedmontese \
     texlive-latex-fonts \
     texlive-latex2man \
     texlive-collection-mathscience \
     texlive-metafont-beginners \
     texlive-pspicture-doc \
-    texlive-babel-estonian \
     texlive-graphics \
     texlive-texliveonfly-bin \
     texlive-lshort-turkish \
@@ -1211,7 +1146,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-getoptk \
     texlive-synproof-doc \
     texlive-microtype \
-    texlive-pstools-bin \
     texlive-ttfutils-bin \
     texlive-bytefield \
     texlive-luaotfload-doc \
@@ -1240,14 +1174,11 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-apalike-german-doc \
     texlive-sourcecodepro-fonts \
     texlive-fancybox-doc \
-    texlive-babel-bosnian-doc \
     texlive-chemcompounds \
     texlive-fix2col-doc \
-    texlive-babel-hungarian-doc \
     texlive-booktabs-fr \
     texlive-boondox-fonts \
     texlive-fontinst-doc \
-    texlive-babel-scottish-doc \
     texlive-metafont-bin \
     texlive-functan-doc \
     texlive-bbm-doc \
@@ -1257,7 +1188,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-borceux-doc \
     texlive-ifoddpage-doc \
     texlive-carlisle-doc \
-    texlive-texconfig \
     texlive-js-misc-doc \
     texlive-chemmacros-doc \
     texlive-xetex-itrans \
@@ -1314,14 +1244,11 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-mparrows \
     texlive-pl-doc \
     texlive-substances \
-    texlive-lua2dox \
-    texlive-babel-macedonian \
     texlive-metaplot \
     texlive-pseudocode-doc \
     texlive-luatex-bin \
     texlive-supertabular \
     texlive-tpic2pdftex-bin \
-    texlive-babel-danish \
     texlive-ltximg-bin \
     texlive-pst-text-doc \
     texlive-tipa \
@@ -1383,11 +1310,9 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-fancyref-doc \
     texlive-ocgx2-doc \
     texlive-latexmk-doc \
-    texlive-babel-galician-doc \
     texlive-euro \
     texlive-float-doc \
     texlive-pdfcrop-doc \
-    texlive-babel-romanian-doc \
     texlive-fontspec-doc \
     texlive-pitex-doc \
     texlive-basque-date-doc \
@@ -1401,7 +1326,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-hepunits-doc \
     texlive-lshort-estonian \
     texlive-calculation-doc \
-    texlive-ifxetex-doc \
     texlive-kantlipsum-doc \
     texlive-latex-brochure \
     texlive-xetexconfig \
@@ -1456,17 +1380,14 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-showhyphens \
     texlive-collection-luatex \
     texlive-mptrees \
-    texlive-babel-swedish \
     texlive-forest \
     texlive-hyphen-german \
     texlive-make4ht \
     texlive-metatype1 \
-    texlive-babel-kurmanji \
     texlive-umlaute \
     texlive-seetexk-bin \
     texlive-mfirstuc \
     texlive-match_parens-bin \
-    texlive-babel-breton \
     texlive-babelbib \
     texlive-datatool \
     texlive-r_und_s-doc \
@@ -1492,7 +1413,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-soul \
     texlive-undergradmath \
     texlive-fragmaster-bin \
-    texlive-tetex-doc \
     texlive-ifplatform \
     texlive-ncntrsbk \
     texlive-bibtex8-bin \
@@ -1528,12 +1448,10 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-patgen-bin \
     texlive-fixltxhyph-doc \
     texlive-dviasm \
-    texlive-babel-latvian-doc \
     texlive-charter-fonts \
     texlive-filesystem \
     texlive-context-account \
     texlive-chemgreek \
-    texlive-babel-slovenian \
     texlive-placeins-doc \
     texlive-mfnfss \
     texlive-galois-doc \
@@ -1541,8 +1459,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-beton-doc \
     texlive-revtex4 \
     texlive-texloganalyser-bin \
-    texlive-babel-albanian \
-    texlive-pstools-doc \
     texlive-lshort-german \
     texlive-hepparticles-doc \
     texlive-ms \
@@ -1587,7 +1503,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-mptopdf-doc \
     texlive-apxproof-doc \
     texlive-feupphdteses \
-    texlive-babel-czech \
     texlive-xecyr-doc \
     texlive-present \
     texlive-comment \
@@ -1595,7 +1510,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-fenixpar-doc \
     texlive-mathpazo-fonts \
     texlive-ofs-doc \
-    texlive-babel-italian-doc \
     texlive-context-french \
     texlive-cs \
     texlive-nath \
@@ -1607,7 +1521,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-collection-binextra \
     texlive-tex-ini-files \
     texlive-mathspec \
-    texlive-babel-galician \
     texlive-texware-bin \
     texlive-gotoh-doc \
     texlive-pst-slpe-doc \
@@ -1664,17 +1577,14 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-norasi-c90 \
     texlive-braket \
     texlive-context-cmscbf \
-    texlive-babel-portuges-doc \
     texlive-avantgar-fonts \
     texlive-piechartmp-doc \
     texlive-miller \
     texlive-fragmaster-doc \
     texlive-simpler-wick \
     texlive-hyphen-ancientgreek \
-    texlive-babel-polish \
     texlive-xfor \
     texlive-bibleref-french-doc \
-    texlive-texconfig-bin \
     texlive-pst-ovl-doc \
     texlive-lshort-spanish \
     texlive-gtl-doc \
@@ -1691,7 +1601,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-clrscode-doc \
     texlive-wasysym \
     texlive-splines-doc \
-    texlive-ifetex \
     texlive-lecturer-doc \
     texlive-fancylabel \
     texlive-xypic-tut-pt \
@@ -1716,7 +1625,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-SIunits-doc \
     texlive-ellipsis-doc \
     texlive-unicode-data-doc \
-    texlive-lua2dox-doc \
     texlive-movie15-doc \
     texlive-docsurvey \
     texlive-media9 \
@@ -1734,7 +1642,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-context-letter \
     texlive-dvisvgm \
     texlive-notoccite \
-    texlive-babel-occitan-doc \
     texlive-fontch-doc \
     texlive-philokalia-doc \
     texlive-backnaur \
@@ -1745,7 +1652,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-bib-fr-doc \
     texlive-gloss-occitan-doc \
     texlive-pst-grad-doc \
-    texlive-babel-dutch \
     texlive-texdoc-bin \
     texlive-bbm-macros \
     texlive-fontspec \
@@ -1753,7 +1659,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-bropd-doc \
     texlive-ifmtarg-doc \
     texlive-rmathbr-doc \
-    texlive-FAQ-en \
     texlive-nuc \
     texlive-tex-gyre \
     texlive-l2tabu-spanish \
@@ -1796,7 +1701,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-ncctools-doc \
     texlive-xeindex-doc \
     texlive-facture-doc \
-    texlive-babel-catalan-doc \
     texlive-pkfix-helper-bin \
     texlive-ucharclasses \
     texlive-context-lettrine \
@@ -1805,7 +1709,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-boldtensors \
     texlive-pdfjam-doc \
     texlive-fontbook-doc \
-    texlive-babel-slovenian-doc \
     texlive-mpcolornames \
     texlive-mathpazo \
     texlive-make4ht-bin \
@@ -1820,7 +1723,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-tablor \
     texlive-amslatex-primer \
     texlive-randomlist-doc \
-    texlive-ifluatex-doc \
     texlive-cc-pl-doc \
     texlive-latexcheat-esmx \
     texlive-xecyr \
@@ -1861,7 +1763,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-purifyeps-bin \
     texlive-natded-doc \
     texlive-stmaryrd-fonts \
-    texlive-babel-basque-doc \
     texlive-pygmentex-bin \
     texlive-catcodes \
     texlive-luabibentry \
@@ -1871,9 +1772,7 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-oubraces \
     texlive-pdf-trans-doc \
     texlive-cc-pl-fonts \
-    texlive-babel-samin-doc \
     texlive-context-algorithmic \
-    texlive-babel-spanglish \
     texlive-hyphen-polish \
     texlive-ocgx2 \
     texlive-fvextra-doc \
@@ -1881,8 +1780,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-prftree-doc \
     texlive-bibtex8-doc \
     texlive-substr \
-    texlive-babel-basque \
-    texlive-babel-hebrew \
     texlive-tdsfrmath \
     texlive-hep-doc \
     texlive-lshort-french \
@@ -1906,7 +1803,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-context-gantt-doc \
     texlive-fancyref \
     texlive-translation-enumitem-de \
-    texlive-bezos \
     texlive-luatodonotes-doc \
     texlive-fixltxhyph \
     texlive-texdoc-doc \
@@ -1926,7 +1822,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-etex-pkg \
     texlive-hepthesis \
     texlive-algorithmicx-doc \
-    texlive-mychemistry-doc \
     texlive-txfonts-fonts \
     texlive-euro-doc \
     texlive-isomath \
@@ -1962,10 +1857,8 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-checklistings-doc \
     texlive-setspace-doc \
     texlive-zapfding \
-    texlive-knuth-doc \
     texlive-logicproof \
     texlive-germbib \
-    texlive-knuth \
     texlive-fixlatvian \
     texlive-combofont-doc \
     texlive-subfig-doc \
@@ -1973,7 +1866,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-longdivision-doc \
     texlive-coolstr \
     texlive-seminar \
-    texlive-genmisc \
     texlive-hyphen-hungarian-doc \
     texlive-turkmen \
     texlive-context-simplefonts-doc \
@@ -2000,7 +1892,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-latex-git-log-bin \
     texlive-collection-langpolish \
     texlive-pdftex-fonts \
-    texlive-babel-danish-doc \
     texlive-luaotfload-bin \
     texlive-filecontents-doc \
     texlive-pdfcrop-bin \
@@ -2009,12 +1900,10 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-hyphen-english \
     texlive-context-cmttbf \
     texlive-arphic-fonts \
-    texlive-babel-swedish-doc \
     texlive-cm \
     texlive-fpl-doc \
     texlive-midnight \
     texlive-plstmary-doc \
-    texlive-babel-portuges \
     texlive-latexdiff \
     texlive-xtab \
     texlive-bidishadowtext-doc \
@@ -2023,7 +1912,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-lshort-slovenian \
     texlive-ptext-doc \
     texlive-arara-bin \
-    texlive-sympytexpackage \
     texlive-changepage-doc \
     texlive-showexpl \
     texlive-interval-doc \
@@ -2054,7 +1942,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-enumitem \
     texlive-turkmen-doc \
     texlive-cslatex-bin \
-    texlive-einfuehrung \
     texlive-mfnfss-doc \
     texlive-ebproof-doc \
     texlive-abstyles-doc \
@@ -2068,7 +1955,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-ctanupload-bin \
     texlive-natbib-doc \
     texlive-everypage-doc \
-    texlive-babel-albanian-doc \
     texlive-pictexsum \
     texlive-context-ruby \
     texlive-cstypo \
@@ -2078,12 +1964,10 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-boxedminipage \
     texlive-pbox-doc \
     texlive-font-change-doc \
-    texlive-babel-romansh-doc \
     texlive-moreverb \
     texlive-collection-langfrench \
     texlive-hyphen-greek \
     texlive-pdflatexpicscale \
-    texlive-babel-occitan \
     texlive-preview-doc \
     texlive-germkorr-doc \
     texlive-bibtex-doc \
@@ -2129,7 +2013,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-ucs-doc \
     texlive-unisugar-doc \
     texlive-dirtree \
-    texlive-lua2dox-bin \
     texlive-epstopdf-doc \
     texlive-cite \
     texlive-mweights-doc \
@@ -2145,10 +2028,8 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-garuda-c90 \
     texlive-parallel-doc \
     texlive-ofs \
-    texlive-babel-polish-doc \
     texlive-context-chromato \
     texlive-bera-fonts \
-    texlive-babel-welsh \
     texlive-ytableau \
     texlive-framed-doc \
     texlive-dehyph-exptl \
@@ -2156,7 +2037,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-metapost-examples \
     texlive-bibleref-doc \
     texlive-wrapfig \
-    texlive-babel-croatian \
     texlive-texdiff-bin \
     texlive-gu-doc \
     texlive-l3packages \
@@ -2168,7 +2048,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-isomath-doc \
     texlive-xecjk \
     texlive-sesamanuel-doc \
-    texlive-latex-bib-ex \
     texlive-cloze-doc \
     texlive-xcolor \
     texlive-dviinfox \
@@ -2190,5 +2069,6 @@ RUN zypper install -y texlive-scheme-basic && \
     texlive-pstricks-add \
     texlive-synctex \
     texlive-metaplot-doc \
-    texlive-tamethebeast && \
-    zypper install -y make
+    texlive-tamethebeast
+RUN zypper install -y perl-Parse-RecDescent
+RUN zypper install -y make
