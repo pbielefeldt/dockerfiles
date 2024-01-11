@@ -1,13 +1,17 @@
-FROM registry.opensuse.org/opensuse/leap:15.4
+FROM registry.opensuse.org/opensuse/leap:15.5
 
-RUN zypper ref -s
-RUN zypper update -y
+RUN zypper addrepo https://download.opensuse.org/repositories/Publishing:TeXLive/15.5/Publishing:TeXLive.repo
+RUN find /etc/zypp/repos.d/ -name '*.repo' -exec sed -i 's/http:\/\/download/https\:\/\/download/' {} \;
+RUN zypper --gpg-auto-import-keys refresh
 
 #RUN zypper install -y make
 RUN zypper install -y curl
 
-RUN zypper install -y texlive-scheme-basic texlive-xetex
-RUN zypper install -y liberation-fonts texlive-lm-math
+RUN zypper install -y texlive-scheme-basic
+RUN zypper install -y texlive-xetex
+RUN zypper install -y liberation-fonts
+RUN zypper install -y texlive-lm-math
+
 RUN zypper install -y pandoc
 
 RUN zypper install -y 'tex(beamer.cls)'
