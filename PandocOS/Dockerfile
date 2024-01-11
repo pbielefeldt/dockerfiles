@@ -10,6 +10,7 @@ RUN zypper install -y texlive-scheme-basic texlive-xetex
 RUN zypper install -y liberation-fonts texlive-lm-math
 RUN zypper install -y pandoc
 
+RUN zypper install -y 'tex(beamer.cls)'
 RUN zypper install -y 'tex(pzdr.tfm)'
 RUN zypper install -y 'tex(fancyvrb.sty)'
 RUN zypper install -y 'tex(framed.sty)'
