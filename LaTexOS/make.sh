@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-TAGNAME="pbielefeldt/latexos:latest"
+#sudo systemctl start docker
+TAGNAME="pbielefeldt/latexos"
+TAGVERSION="15.5_tmptest"
 
-docker build --platform linux/amd64 --tag ${TAGNAME} .
+docker build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --tag ${TAGNAME}:latest .
 
-docker login
-docker push ${TAGNAME}
-
+#docker login
+#docker push ${TAGNAME} --all-tags

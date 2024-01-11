@@ -1,6 +1,10 @@
-FROM registry.opensuse.org/opensuse/leap:15.4
+FROM registry.opensuse.org/opensuse/leap:15.5
 
+RUN zypper addrepo https://download.opensuse.org/repositories/Publishing:TeXLive/15.5/Publishing:TeXLive.repo
+RUN find /etc/zypp/repos.d/ -name '*.repo' -exec sed -i 's/http:\/\/download/https\:\/\/download/' {} \;
+RUN zypper --gpg-auto-import-keys refresh
 RUN zypper install -y texlive-scheme-basic
+
 RUN zypper install -y texlive-yhmath \
     texlive-udesoftec-doc \
     texlive-dviincl \
@@ -1392,7 +1396,6 @@ RUN zypper install -y texlive-yhmath \
     texlive-datatool \
     texlive-r_und_s-doc \
     texlive-afm2pl-bin \
-    texlive-scheme-basic \
     texlive-bidishadowtext \
     texlive-latexcheat-ptbr \
     texlive-sasnrdisplay-doc \
@@ -2072,3 +2075,4 @@ RUN zypper install -y texlive-yhmath \
     texlive-tamethebeast
 RUN zypper install -y perl-Parse-RecDescent
 RUN zypper install -y make
+
