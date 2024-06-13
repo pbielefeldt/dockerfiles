@@ -25,8 +25,8 @@ jobs:
 
         - name: Build and push Docker image
           run: |
-            TAGNAME="pbielefeldt/latexos"
-            TAGVERSION="15.5_testtesttest"
+            TAGNAME="${{ secrets.DOCKERHUB_USERNAME }}/latexos"
+            TAGVERSION="15.5.3"
 
             cd LaTexOS
             if [ "${{ github.event_name }}" == "pull_request" ]; then
@@ -34,6 +34,4 @@ jobs:
                 TAGVERSION="${TAGVERSION}-testing"
             fi
             
-            docker buildx build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --tag ${TAGNAME}:latest .
-            echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-            docker push ${TAGNAME} --all-tags
+            docker buildx build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --tag ${TAGNAME}:latest --push .
