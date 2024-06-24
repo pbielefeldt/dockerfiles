@@ -2,7 +2,7 @@
 
 #sudo systemctl start docker
 TAGNAME="pbielefeldt/latexos"
-TAGVERSION="15.5"
+TAGVERSION="15.5_tmptest"
 
 docker build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --tag ${TAGNAME}:latest .
 
