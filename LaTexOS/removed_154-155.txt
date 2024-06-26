@@ -1,0 +1,13 @@
+texlive-scheme-medium \
+texlive-collection-langczechslovak \
+texlive-collection-langenglish \
+texlive-collection-langeuropean \
+texlive-collection-langfrench \
+texlive-collection-langgerman \
+texlive-collection-langitalian \
+texlive-collection-langpolish \
+texlive-collection-langportuguese \
+texlive-collection-langspanish \
+texlive-collection-mathscience \
+texlive-collection-metapost \
+texlive-collection-plaingeneric \
