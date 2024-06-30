@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: Build LaTexOS Docker Image
 
 on:
     pull_request:
@@ -14,27 +14,23 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
-            - name: Login to Docker Hub
-              uses: docker/login-action@v3
-              with:
-                username: ${{ secrets.DOCKERHUB_USERNAME }}
-                password: ${{ secrets.DOCKERHUB_TOKEN }}
+            # - name: Login to GitHub Container Registry
+            #   uses: docker/login-action@v3
+            #   with:
+            #     username: ${{ secrets.GITHUB_ACTOR }}
+            #     password: ${{ secrets.GITHUB_TOKEN }}
             
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v1
 
             - name: Build Docker image
+              id: build_image
               run: |
-                TAGNAME="ghcr.io/${{ github.repository_owner }}/latexos"
-                TAGVERSION="15.5.3"
-                    
-                cd LaTexOS
-                if [ "${{ github.event_name }}" == "pull_request" ]; then
-                    TAGVERSION="${TAGVERSION}-testing"
-                fi
-                docker buildx build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --tag ${TAGNAME}:latest --push .
+                TAGNAME="latexos"
+                TAGVERSION="temp"
 
-            - name: Save image digest to file
-              run: |
-                echo "::set-output name=digest::$(docker inspect --format='{{index .RepoDigests 0}}' ${TAGNAME}:${TAGVERSION})"
-                id: build_output
+                cd LaTexOS
+                docker buildx build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --load .
+  
+            - name: Save image digest
+              run: echo "digest=$(docker inspect --format='{{index .RepoDigests 0}}' latexos:temp)" >> $GITHUB_ENV
