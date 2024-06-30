@@ -32,5 +32,11 @@ jobs:
                 cd LaTexOS
                 docker buildx build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --load .
   
-            - name: Save image digest
-              run: echo "digest=$(docker inspect --format='{{index .RepoDigests 0}}' latexos:temp)" >> $GITHUB_ENV
+            - name: Save Docker image to archive
+              run: docker save latexos:temp -o latexos_temp.tar
+          
+            - name: Upload Docker image as artifact
+              uses: actions/upload-artifact@v2
+              with:
+                name: latexos_temp_image
+                path: latexos_temp.tar
