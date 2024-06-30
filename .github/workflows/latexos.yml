@@ -42,6 +42,7 @@ jobs:
                 path: latexos_temp.tar
 
     test:
+        needs: build
         runs-on: ubuntu-latest
 
         steps:
@@ -70,8 +71,9 @@ jobs:
                 exit 0
 
     push:
+        needs: test
         runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        if: ${{ needs.test.result == 'success' }}
 
         steps:
             - name: Checkout code
