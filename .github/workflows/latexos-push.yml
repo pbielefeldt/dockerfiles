@@ -1,4 +1,4 @@
-name: Push LaTexOS Docker Image
+name: "Push LaTexOS Docker Image"
 
 on:
     workflow_run:
