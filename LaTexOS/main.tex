@@ -1,0 +1,34 @@
+%main.tex
+\documentclass{article}
+
+\usepackage[backend=biber, style=numeric-comp]{biblatex}
+\addbibresource{references.bib}
+
+% Add the following lines to include packages and setup BibTeX
+%\usepackage[backend=bibtex, style=numeric-comp]{biblatex}
+%\addbibresource{references.bib}
+
+% Add the following lines to include default BibLaTeX
+%\usepackage[backend=bibtex, style=numeric-comp]{biblatex}
+%\addbibresource{references.bib}
+
+
+\begin{document}
+
+Hello world! This is an example document demonstrating how to add citations in LaTeX~\cite{knuth1984texbook} using BibLaTeX.
+We will cite three papers.~\cite{lamport1986latex,goossens1993latex}
+
+To generate the bibliography, make sure to compile the document with the following sequence of commands:
+
+\begin{verbatim}
+pdflatex main.tex
+biber main
+pdflatex main.tex
+pdflatex main.tex
+\end{verbatim}
+
+Or use GNU make to compile it with \texttt{make all}.
+
+\printbibliography
+
+\end{document}
