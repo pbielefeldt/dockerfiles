@@ -1,4 +1,4 @@
-name: Docker Build
+name: Docker Build and LaTeX Verify
 
 on:
     pull_request:
@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-    build:
+    build-and-push:
         #runs-on: opensuse/leap
         runs-on: ubuntu-latest
         
@@ -30,8 +30,28 @@ jobs:
 
             cd LaTexOS
             if [ "${{ github.event_name }}" == "pull_request" ]; then
-                #TAGVERSION="${TAGVERSION}:testing_${{ github.head_ref }}"
                 TAGVERSION="${TAGVERSION}-testing"
             fi
-            
             docker buildx build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --tag ${TAGNAME}:latest --push .
+
+    build-and-verify-pdf:
+        needs: build-and-push
+        runs-on: ubuntu-latest
+
+        container:
+            image: ${{ secrets.DOCKERHUB_USERNAME }}/latexos:latest
+
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Build LaTeX Test document
+          run: |
+            cd LaTexOS/testfiles/
+            make all
+
+        - name: Verify PDF
+          run: |
+            # TODO: Add commands here to verify the PDF
+            # - use a tool like pdfinfo to check the PDF's metadata
+            # - if the verification fails, make sure to return a non-zero exit code to indicate failure
