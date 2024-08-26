@@ -5,6 +5,10 @@ on:
         branches:
             - main
 
+env:
+    DOCKER_IMAGE_NAME: "latexos"
+    DOCKER_IMAGE_VERSION: "15.5.4"
+
 jobs:
     build:
         #runs-on: opensuse/leap
@@ -20,20 +24,17 @@ jobs:
             - name: Build Docker image
               id: build_image
               run: |
-                TAGNAME="latexos"
-                TAGVERSION="${{ github.sha }}"
-
-                cd LaTexOS
-                docker buildx build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --load .
+                  cd LaTexOS
+                  docker buildx build --platform linux/amd64 --tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp --load .
   
             - name: Save Docker image to archive
-              run: docker save ${TAGNAME}:${TAGVERSION} -o latexos_temp.tar
-          
+              run: docker save ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp -o ${{ env.DOCKER_IMAGE_NAME }}_temp.tar
+
             - name: Upload Docker image as artifact
               uses: actions/upload-artifact@v2
               with:
-                name: latexos_temp_image
-                path: latexos_temp.tar
+                  name: ${{ env.DOCKER_IMAGE_NAME }}_temp_image
+                  path: ${{ env.DOCKER_IMAGE_NAME }}_temp.tar
 
     push:
         needs: build
@@ -46,18 +47,23 @@ jobs:
             - name: Login to Docker Hub
               uses: docker/login-action@v3
               with:
-                username: ${{ secrets.DOCKERHUB_USERNAME }}
-                password: ${{ secrets.DOCKERHUB_TOKEN }}
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Download Docker image artifact
+              uses: actions/download-artifact@v2
+              with:
+                  name: ${{ env.DOCKER_IMAGE_NAME }}_temp_image
 
             - name: Load Docker image # from file
-              run: docker load -i latexos_temp.tar
+              run: docker load -i ${{ env.DOCKER_IMAGE_NAME }}_temp.tar
 
             - name: Tag and push image to Docker Hub
               run: |
-                DOCKERHUB_TAG="${{ secrets.DOCKERHUB_USERNAME }}/latexos"
-                DOCKERHUB_VERSION=15.5.3
-                if [ "${{ github.event_name }}" == "pull_request" ]; then
-                    DOCKERHUB_VERSION="${TAGVERSION}-testing"
-                fi
-                docker tag latexos:temp ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
-                docker push ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
+                  DOCKERHUB_TAG="${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}"
+                  DOCKERHUB_VERSION=${{ env.DOCKER_IMAGE_VERSION }}
+                  if [ "${{ github.event_name }}" == "pull_request" ]; then
+                      DOCKERHUB_VERSION="${{ env.DOCKER_IMAGE_VERSION }}_testing"
+                  fi
+                  docker tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
+                  docker push ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
