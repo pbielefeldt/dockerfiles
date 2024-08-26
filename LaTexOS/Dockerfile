@@ -16,6 +16,8 @@ RUN zypper install --no-confirm 'tex(pzdr.tfm)'
 RUN zypper install --no-confirm 'tex(fancyvrb.sty)'
 RUN zypper install --no-confirm 'tex(framed.sty)'
 
+#needed for biber
+RUN zypper install --no-confirm perl-Parse-RecDescent
 
 # COPY all_latex.sh ./
 # RUN sh -e all_latex.sh
