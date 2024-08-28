@@ -64,9 +64,12 @@ jobs:
             - name: Tag and push image to Docker Hub
               run: |
                   DOCKERHUB_TAG="${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}"
-                  DOCKERHUB_VERSION=${{ env.DOCKER_IMAGE_VERSION }}
                   if [ "${{ github.event_name }}" == "pull_request" ]; then
                       DOCKERHUB_VERSION="${{ env.DOCKER_IMAGE_VERSION }}_testing"
+                      docker tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
+                  elif [ "${{ github.event_name }}" == "push" ]; then
+                      DOCKERHUB_VERSION=${{ env.DOCKER_IMAGE_VERSION }}
+                      docker tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
+                      docker tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp ${DOCKERHUB_TAG}:latest
                   fi
-                  docker tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
-                  docker push ${DOCKERHUB_TAG}:${DOCKERHUB_VERSION}
+                  docker push ${DOCKERHUB_TAG} --all-tags
