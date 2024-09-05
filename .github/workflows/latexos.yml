@@ -10,7 +10,7 @@ on:
 
 env:
     DOCKER_IMAGE_NAME: "latexos"
-    DOCKER_IMAGE_VERSION: "15.5.4"
+    DOCKER_IMAGE_VERSION: "15.6.1"
 
 jobs:
     build:
