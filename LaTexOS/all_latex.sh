@@ -1154,7 +1154,8 @@ texlive-ytableau \
 texlive-zapfchan \
 texlive-zapfchan-fonts \
 texlive-zapfding \
-texlive-zapfding-fonts
+texlive-zapfding-fonts \
+liberation-fonts
 
 zypper install -y 'tex(beamer.cls)'
 zypper install -y 'tex(pzdr.tfm)'
