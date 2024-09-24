@@ -2,7 +2,7 @@
 
 #sudo systemctl start docker
 TAGNAME="pbielefeldt/pandocos"
-TAGVERSION="15.5"
+TAGVERSION="15.6.1"
 
 docker build --platform linux/amd64 --tag ${TAGNAME}:${TAGVERSION} --tag ${TAGNAME}:latest .
 
