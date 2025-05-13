@@ -1,16 +1,16 @@
-name: "Build and Push LaTexOS Docker Image"
+name: "Build and Push PandocOS Docker Image"
 
 on:
-    push:
-        branches: [main]
-        paths: ["LaTeXOS/**"]
     pull_request:
         branches: [main]
-        paths: ["LaTeXOS/**"]
+        paths: ["PandocOS"]
+    push:
+        branches: [main]
+        paths: ["PandocOS"]
 
 env:
-    DOCKER_IMAGE_NAME: "latexos"
-    DOCKER_IMAGE_VERSION: "15.6.2"
+    DOCKER_IMAGE_NAME: "pandocos"
+    DOCKER_IMAGE_VERSION: "15.6.3"
 
 jobs:
     build:
@@ -29,7 +29,7 @@ jobs:
             - name: Build Docker image
               id: build_image
               run: |
-                  cd LaTeXOS
+                  cd PandocOS
                   docker buildx build --platform linux/amd64 --tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp --load --pull .
 
             - name: Save Docker image to archive

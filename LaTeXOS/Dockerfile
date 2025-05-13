@@ -10,11 +10,9 @@ RUN zypper --non-interactive update --no-confirm
 RUN zypper modifyrepo -p 70 Publishing_TeXLive
 
 RUN zypper install --no-confirm make
+
 RUN zypper --non-interactive install --force-resolution --no-confirm texlive-scheme-full
-RUN zypper install --no-confirm 'tex(beamer.cls)'
-RUN zypper install --no-confirm 'tex(pzdr.tfm)'
-RUN zypper install --no-confirm 'tex(fancyvrb.sty)'
-RUN zypper install --no-confirm 'tex(framed.sty)'
+RUN zypper install --no-confirm 'tex(beamer.cls)' 'tex(pzdr.tfm)' 'tex(fancyvrb.sty)' 'tex(framed.sty)'
 
 #needed for biber
 RUN zypper install --no-confirm perl-Parse-RecDescent
@@ -24,4 +22,3 @@ RUN zypper install --no-confirm perl-Parse-RecDescent
 
 RUN /usr/share/texmf/texconfig/update
 RUN fc-cache -fsv
-
