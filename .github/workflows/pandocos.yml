@@ -3,10 +3,10 @@ name: "Build and Push PandocOS Docker Image"
 on:
     pull_request:
         branches: [main]
-        paths: ["PandocOS"]
+        paths: ["PandocOS/**"]
     push:
         branches: [main]
-        paths: ["PandocOS"]
+        paths: ["PandocOS/**"]
 
 env:
     DOCKER_IMAGE_NAME: "pandocos"
