@@ -18,7 +18,7 @@ RUN zypper install --no-confirm 'tex(beamer.cls)' 'tex(pzdr.tfm)' 'tex(fancyvrb.
 RUN /usr/share/texmf/texconfig/update
 RUN fc-cache -fsv
 
-RUN curl https://raw.githubusercontent.com/pbielefeldt/LaTeX-Stuff/master/markdown2pdf.sh > markdown2pdf.sh
+RUN curl https://codeberg.org/pbiel/LaTeX-Stuff/raw/branch/master/markdown2pdf.sh > markdown2pdf.sh
 RUN chmod +x markdown2pdf.sh
-RUN curl https://raw.githubusercontent.com/pbielefeldt/LaTeX-Stuff/master/markdown2docx.sh > markdown2docx-experimental.sh
+RUN curl https://codeberg.org/pbiel/LaTeX-Stuff/raw/branch/master/markdown2docx.sh > markdown2docx-experimental.sh
 RUN chmod +x markdown2docx-experimental.sh
