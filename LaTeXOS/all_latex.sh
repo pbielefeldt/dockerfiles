@@ -36,6 +36,8 @@ texlive-axodraw2-bin                      \
 texlive-barracuda                         \
 texlive-bclogo                            \
 texlive-bezierplot                        \
+texlive-biber                             \
+texlive-biblatex                          \
 texlive-bigintcalc                        \
 texlive-bitset                            \
 texlive-bookmark                          \
@@ -56,6 +58,7 @@ texlive-chklref                           \
 texlive-chklref-bin                       \
 texlive-citeref                           \
 texlive-cjkpunct                          \
+texlive-cleveref                          \
 texlive-clojure-pamphlet                  \
 texlive-cluttex                           \
 texlive-cmbright                          \
@@ -382,13 +385,38 @@ texlive-collection-mathscience            \
 texlive-collection-langenglish            \
 texlive-collection-langeuropean
 
+# install dependencies for PIThesis
+zypper --non-interactive install --force-resolution --no-confirm \
+texlive-newtx                             \
+texlive-newtx-fonts                       \
+texlive-txfonts                           \
+texlive-txfonts-fonts                     \
+texlive-palatino                          \
+texlive-palatino-fonts                    \
+texlive-subfig                            \
+texlive-subfigure                         \
+texlive-xtab                              \
+texlive-supertabular                      \
+texlive-siunitx                           \
+texlive-physics                           \
+texlive-hep                               \
+texlive-hepnames                          \
+texlive-hepparticles                      \
+texlive-hepunits                          \
+texlive-mhchem                            \
+texlive-feynmf                            \
+texlive-feynmp-auto                       \
+texlive-titlesec                          \
+texlive-todonotes                         \
+texlive-footnotebackref
+
 zypper install -y 'tex(beamer.cls)'
 zypper install -y 'tex(pzdr.tfm)'
 zypper install -y 'tex(fancyvrb.sty)'
 zypper install -y 'tex(framed.sty)'
 
 #needed for biber
-zypper install -y perl-Parse-RecDescent
+zypper install -y perl-biber perl-Parse-RecDescent
 
 # currently not available
 
