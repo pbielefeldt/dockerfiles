@@ -1,4 +1,5 @@
-#!/bin/sh -e
+#!/bin/sh
+set -eux
 
 zypper --non-interactive install --force-resolution --no-confirm texlive-scheme-medium
 zypper --non-interactive install --force-resolution --no-confirm texlive \

@@ -31,7 +31,7 @@ jobs:
               id: build_image
               run: |
                   cd LaTeXOS
-                  docker buildx build --platform linux/amd64 --tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp --load --pull .
+                  docker buildx build --progress=plain --platform linux/amd64 --tag ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp --load --pull .
 
             - name: Save Docker image to archive
               run: docker save ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp -o ${{ env.DOCKER_IMAGE_NAME }}_temp.tar
