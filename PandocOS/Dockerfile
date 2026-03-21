@@ -1,4 +1,4 @@
-FROM registry.opensuse.org/opensuse/leap:16.0
+FROM registry.opensuse.org/opensuse/leap:42.3
 
 RUN zypper --non-interactive clean --all
 
