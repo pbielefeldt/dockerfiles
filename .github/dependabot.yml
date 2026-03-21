@@ -13,6 +13,9 @@ updates:
       opensuse-leap:
         patterns:
           - "registry.opensuse.org/opensuse/leap*"
+    ignore:
+      - dependency-name: "registry.opensuse.org/opensuse/leap"
+        versions: ["42.3", "42.2", "42.1", "42.0"]
   - package-ecosystem: "docker"
     directory: "/PandocOS"
     schedule:
@@ -21,3 +24,7 @@ updates:
       opensuse-leap:
         patterns:
           - "registry.opensuse.org/opensuse/leap*"
+    ignore:
+      - dependency-name: "registry.opensuse.org/opensuse/leap"
+        versions: ["42.3", "42.2", "42.1", "42.0"]
+
