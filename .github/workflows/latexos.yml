@@ -1,4 +1,4 @@
-name: "Build and Push LaTexOS Docker Image"
+name: "Build, Test and Push LaTexOS Docker Image"
 
 on:
     push:
@@ -15,6 +15,7 @@ env:
 
 jobs:
     build:
+        name: Build Docker image
         #runs-on: opensuse/leap
         runs-on: ubuntu-latest
 
@@ -42,8 +43,44 @@ jobs:
                   name: ${{ env.DOCKER_IMAGE_NAME }}_temp_image
                   path: ${{ env.DOCKER_IMAGE_NAME }}_temp.tar
 
-    push:
+    test:
+        name: Test LaTeX Docker image
+        runs-on: ubuntu-latest
         needs: build
+
+        steps:
+        - name: Checkout repo
+          uses: actions/checkout@v4
+          with:
+              persist-credentials: false            
+
+
+        - name: Download Docker image artifact
+          uses: actions/download-artifact@v4
+          with:
+              name: ${{ env.DOCKER_IMAGE_NAME }}_temp_image
+
+        - name: Load Docker image
+          run: docker load -i ${{ env.DOCKER_IMAGE_NAME }}_temp.tar
+
+        - name: Run Make inside container (compile test files)
+          run: |
+              docker run --rm \
+              -v "${{ github.workspace }}/LaTeXOS/testfiles:/work" \
+              -w /work \
+              ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_VERSION }}_temp \
+              /bin/sh -c "make -C /work"
+
+        - name: Upload generated PDF and logs
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+              name: latexos-testfiles
+              path: |
+                  LaTeXOS/testfiles/main.pdf
+
+    push:
+        needs: test
         runs-on: ubuntu-latest
 
         steps:
