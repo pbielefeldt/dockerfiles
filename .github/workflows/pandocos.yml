@@ -11,7 +11,7 @@ on:
 
 env:
     DOCKER_IMAGE_NAME: "pandocos"
-    DOCKER_IMAGE_VERSION: "15.6.3"
+    DOCKER_IMAGE_VERSION: "16.0.1"
 
 jobs:
     build:
