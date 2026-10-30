@@ -1,0 +1,95 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -75,7 +75,6 @@
+ # Set GENFIT include directories
+ SET(GF_INC_DIRS
+ 		./core/include/
+-		./eventDisplay/include/
+ 		./fields/include/
+ 		./finitePlanes/include/
+ 		./fitters/include/
+@@ -125,7 +124,6 @@
+ 
+ # add the list of source code files -- careful, when a new file is added!
+ AUX_SOURCE_DIRECTORY( ./core/src          library_sources )
+-AUX_SOURCE_DIRECTORY( ./eventDisplay/src  library_sources )
+ AUX_SOURCE_DIRECTORY( ./fields/src        library_sources )
+ AUX_SOURCE_DIRECTORY( ./finitePlanes/src  library_sources )
+ AUX_SOURCE_DIRECTORY( ./fitters/src       library_sources )
+@@ -164,16 +162,6 @@
+ )
+ SET(library_sources "${CMAKE_CURRENT_BINARY_DIR}/coreRootDict.cxx" "${library_sources}")
+ 
+-SET(EVENTDISPLAY_DICTIONARY_SOURCES
+-		${CMAKE_CURRENT_SOURCE_DIR}/eventDisplay/include/EventDisplay.h
+-)
+-ROOT_GENERATE_DICTIONARY(
+-	    eventDisplayRootDict
+-		"${EVENTDISPLAY_DICTIONARY_SOURCES}"
+-		LINKDEF "${CMAKE_CURRENT_SOURCE_DIR}/eventDisplay/src/eventDisplayLinkDef.h"
+-)
+-SET(library_sources "${CMAKE_CURRENT_BINARY_DIR}/eventDisplayRootDict.cxx" "${library_sources}")
+-
+ SET(FITTERS_DICTIONARY_SOURCES
+ 		${CMAKE_CURRENT_SOURCE_DIR}/fitters/include/AbsKalmanFitter.h
+ 		${CMAKE_CURRENT_SOURCE_DIR}/fitters/include/KalmanFittedStateOnPlane.h
+@@ -252,7 +240,7 @@
+ )
+ SET(library_sources "${CMAKE_CURRENT_BINARY_DIR}/utilitiesRootDict.cxx" "${library_sources}")
+ 
+-foreach( dict coreRootDict eventDisplayRootDict fittersRootDict GBLRootDict measurementsRootDict trackRepsRootDict utilitiesRootDict)
++foreach( dict coreRootDict fittersRootDict GBLRootDict measurementsRootDict trackRepsRootDict utilitiesRootDict)
+   list(APPEND ROOT_PCM_FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${dict}_rdict.pcm)
+ endforeach()
+ 
+@@ -280,22 +268,18 @@
+ if(DEFINED RAVE)
+ 	TARGET_LINK_LIBRARIES(
+ 			${PROJECT_NAME}
+-			ROOT::Core ROOT::Physics ROOT::Eve
++			ROOT::Core ROOT::Physics ROOT::Geom ROOT::EG ROOT::Tree
+ 			${Rave_LIB}
+ 			${Rave_LDFLAGS_STR}
+ 	)
+ else()
+-	TARGET_LINK_LIBRARIES(${PROJECT_NAME} ROOT::Core ROOT::Physics ROOT::Eve)
++	TARGET_LINK_LIBRARIES(${PROJECT_NAME} ROOT::Core ROOT::Physics ROOT::Geom ROOT::EG ROOT::Tree)
+ endif()
+ 
+ INCLUDE(CTest)
+ 
+ ADD_CUSTOM_TARGET( tests )
+ 
+-ADD_GENFIT_TEST( fitterTests               test/fitterTests/main.cc)
+-ADD_GENFIT_TEST( minimalFittingExample     test/minimalFittingExample/main.cc)
+-ADD_GENFIT_TEST( minimalFittingExample2    test/minimalFittingExample/main2.cc)
+-ADD_GENFIT_TEST( measurementFactoryExample test/measurementFactoryExample/main.cc)
+ ADD_GENFIT_TEST( streamerTest              test/streamerTest/main.cc)
+ ADD_GENFIT_TEST( unitTests                 test/unitTests/main.cc)
+ IF(DEFINED RAVE)
+--- a/test/streamerTest/main.cc
++++ b/test/streamerTest/main.cc
+@@ -14,13 +14,11 @@
+ #include <RKTrackRep.h>
+ #include <TGeoMaterialInterface.h>
+ 
+-#include <EventDisplay.h>
+ 
+ #include <HelixTrackModel.h>
+ #include <MeasurementCreator.h>
+ 
+ #include <TDatabasePDG.h>
+-#include <TEveManager.h>
+ #include <TGeoManager.h>
+ #include <TRandom.h>
+ #include <TVector3.h>
+--- a/test/unitTests/main.cc
++++ b/test/unitTests/main.cc
+@@ -39,7 +39,6 @@
+ #include <TApplication.h>
+ #include <TCanvas.h>
+ #include <TDatabasePDG.h>
+-#include <TEveManager.h>
+ #include <TGeoManager.h>
+ #include <TH1D.h>
+ #include <TH2D.h>
