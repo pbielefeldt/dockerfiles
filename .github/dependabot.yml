@@ -17,6 +17,17 @@ updates:
       - dependency-name: "registry.opensuse.org/opensuse/leap"
         versions: ["42.3", "42.2", "42.1", "42.0"]
   - package-ecosystem: "docker"
+    directory: "/GenfitOS"
+    schedule:
+      interval: "weekly"
+    groups:
+      opensuse-leap:
+        patterns:
+          - "registry.opensuse.org/opensuse/leap*"
+    ignore:
+      - dependency-name: "registry.opensuse.org/opensuse/leap"
+        versions: ["42.3", "42.2", "42.1", "42.0"]
+  - package-ecosystem: "docker"
     directory: "/PandocOS"
     schedule:
       interval: "weekly"
