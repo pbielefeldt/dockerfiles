@@ -4,7 +4,7 @@
 #
 # GenFit's own test suite (ctest: streamerTest, unitTests, gtests) runs during the build.
 
-FROM registry.opensuse.org/opensuse/leap:16.0
+FROM registry.opensuse.org/opensuse/leap:16.0.6.461@sha256:a9273058652f1f7d39f7c8439079662bd387be74013c6b40c9dfc42b228a972c
 
 ARG GENFIT_REF=02-03-00
 ARG JOBS=4

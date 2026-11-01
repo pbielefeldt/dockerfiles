@@ -1,4 +1,4 @@
-FROM registry.opensuse.org/opensuse/leap:16.0.6.374@sha256:5bc9e1242fc2c92dbbcaf4db5e2eadad062c4c0434550c53822201f18799d55a
+FROM registry.opensuse.org/opensuse/leap:16.0.6.461@sha256:a9273058652f1f7d39f7c8439079662bd387be74013c6b40c9dfc42b228a972c
 
 RUN zypper --non-interactive clean --all
 
