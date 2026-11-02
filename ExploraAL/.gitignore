@@ -1,0 +1,4 @@
+# GitLab credentials -- never commit
+.env
+# private sources fetched by fetch-sources.sh
+vendor/
