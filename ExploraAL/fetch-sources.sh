@@ -11,22 +11,32 @@
 # (see .env.example) and handed to git via GIT_ASKPASS, so they never show up in URLs,
 # logs, .git/config or the docker build context.
 #
-# Usage: ./fetch-sources.sh
-# Env:   EXPLORA_URL, EXPLORA_REF       explora repository and branch/tag/commit
+# Usage: [PROFILE=production|latest] ./fetch-sources.sh
+# Env:   PROFILE                        version set (profiles/<PROFILE>/profile.env), default: production
+#        EXPLORA_URL, EXPLORA_REF       explora repository and branch/tag/commit
 #        EXPLORA_SRC                    use this local explora source tree instead of cloning
 #        ALLSOURCES_URL, ALLSOURCES_REF allsources repository and branch/tag/commit
 #        ENV_FILE                       credentials file (default: .env next to this script)
 
 set -euo pipefail
+# make errors inside $(...) (e.g. a failed checkout in clone) abort the script, too
+shopt -s inherit_errexit
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VENDOR="${HERE}/vendor"
 
 EXPLORA_URL="${EXPLORA_URL:-https://agthoma.hiskp.uni-bonn.de/gitlab/AGKetzer/tpc/explora.git}"
-EXPLORA_REF="${EXPLORA_REF:-f31bc421bbd14534215ef2cbdbc5b6bc85b7149c}"
+EXPLORA_REF="${EXPLORA_REF:-a661b2a08615d44ff89f3a07132292fe144fe370}"
 EXPLORA_SRC="${EXPLORA_SRC:-}"
 ALLSOURCES_URL="${ALLSOURCES_URL:-https://agthoma.hiskp.uni-bonn.de/gitlab/CB/software/allsources.git}"
-ALLSOURCES_REF="${ALLSOURCES_REF:-07a7f3d687149d394814873be4a8ad251a140b1f}"
+PROFILE="${PROFILE:-production}"
+if [ ! -f "${HERE}/profiles/${PROFILE}/profile.env" ]; then
+	echo "error: unknown PROFILE '${PROFILE}' (see profiles/)" >&2
+	exit 1
+fi
+# sets ALLSOURCES_REF (and GENFIT_REF) unless given in the environment
+# shellcheck disable=SC1090
+. "${HERE}/profiles/${PROFILE}/profile.env"
 ENV_FILE="${ENV_FILE:-${HERE}/.env}"
 
 if [ -f "${ENV_FILE}" ]; then
@@ -85,6 +95,7 @@ clone() {
 }
 
 mkdir -p "${VENDOR}"
+echo "${PROFILE}" > "${VENDOR}/PROFILE"
 rm -rf "${VENDOR}/plugins"
 mkdir -p "${VENDOR}/plugins"
 : > "${VENDOR}/PLUGINS"
@@ -111,6 +122,10 @@ sha="$(clone "${ALLSOURCES_URL}" "${ALLSOURCES_REF}" "${VENDOR}/allsources" no)"
 printf '%s\t%s\t%s\n' allsources "${ALLSOURCES_URL}" "${sha}" >> "${VENDOR}/VERSIONS"
 
 # ExternalPlugins.txt lines: <Name> GIT_REPOSITORY <url> [GIT_TAG <ref>] [...]
+if [ ! -f "${VENDOR}/explora/3rdParty/ExternalPlugins.txt" ]; then
+	echo "error: ${VENDOR}/explora/3rdParty/ExternalPlugins.txt not found" >&2
+	exit 1
+fi
 while read -r -a fields; do
 	[ "${#fields[@]}" -eq 0 ] && continue
 	[[ "${fields[0]}" == \#* ]] && continue

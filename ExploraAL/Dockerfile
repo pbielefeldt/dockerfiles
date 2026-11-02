@@ -32,18 +32,15 @@ RUN dnf -y install dnf-plugins-core epel-release \
 #  against shipped 32bit CERNLIB libraries that need libnsl.so.1 and libcrypt.so.1)
 
 # --- allsources (ROOT, Geant4, Geant3, VMC, VGM, CLHEP, Pythia6, ...) -----------------------
+# PROFILE selects the version set (profiles/<PROFILE>/): `production` (ROOT 6.24, Geant4 10.7,
+# geant3 3.8, ...) or `latest`. profile.env pins the allsources/GenFit refs, allsources.sh adapts the
+# vendored allsources checkout to AlmaLinux 9 (dead URLs, newer compilers, version bumps).
+ARG PROFILE=production
 ENV ALLSOURCES=/opt/CB/allsources
 COPY vendor/allsources /src/allsources
-# Overrides against allsources@07a7f3d (candidates for upstreaming):
-#  - xerces 3.2.4 was moved from apache.org/dist to archive.apache.org (same MD5)
-#  - gsoap 2.8.127 is no longer downloadable; nothing in allsources depends on it and
-#    explora only needs it for the (disabled) online-monitor 3rdParty plugins
-#  - Geant4 10.7 + system expat writes a broken Geant4PackageCache.cmake with CMake >= 3.2x
-#    (EXPAT_LIBRARY is no cache variable any more -> empty type argument), which breaks every
-#    find_package(Geant4) afterwards (VGM, geant4_vmc): use Geant4's builtin expat instead
-RUN sed -i 's|https://www.apache.org/dist/xerces/|https://archive.apache.org/dist/xerces/|' /src/allsources/xerces/CMakeLists.txt \
-	&& sed -i 's|^ADD_SUBDIRECTORY(gsoap)|#&|' /src/allsources/CMakeLists.txt \
-	&& sed -i 's|-DGEANT4_INSTALL_DATA=ON|& -DGEANT4_USE_SYSTEM_EXPAT=OFF|' /src/allsources/geant4/CMakeLists.txt \
+COPY profiles/${PROFILE}/profile.env profiles/${PROFILE}/allsources.sh /src/profile/
+RUN set -a && . /src/profile/profile.env && set +a \
+	&& bash /src/profile/allsources.sh \
 	&& mkdir -p ${ALLSOURCES} /tmp/allsources-build \
 	&& cd /tmp/allsources-build \
 	&& cmake -DCMAKE_INSTALL_PREFIX=${ALLSOURCES} /src/allsources \
@@ -52,12 +49,13 @@ RUN sed -i 's|https://www.apache.org/dist/xerces/|https://archive.apache.org/dis
 	&& cd / && rm -rf /tmp/allsources-build
 
 # --- GenFit (not part of allsources; needed by 3rdParty/CBTTpcTracking) ---------------------
-ARG GENFIT_REF=02-03-00
+ARG GENFIT_REF
 ENV GENFIT=/opt/genfit/lib \
 	GENFIT_INCDIR=/opt/genfit/include
 # (the sources stay in /src: GenFit's ROOT dictionaries reference the headers by their
 #  build-time absolute paths, cling fails to autoload genfit classes without them)
-RUN source ${ALLSOURCES}/thistr16.sh \
+RUN test -n "${GENFIT_REF}" \
+	&& source ${ALLSOURCES}/thistr16.sh \
 	&& curl -fsSL https://github.com/GenFit/GenFit/archive/refs/tags/${GENFIT_REF}.tar.gz | tar xz -C /src \
 	&& cmake -S /src/GenFit-${GENFIT_REF} -B /tmp/genfit-build \
 		-DCMAKE_INSTALL_PREFIX=/opt/genfit -DCMAKE_INSTALL_LIBDIR=lib \
@@ -71,6 +69,7 @@ RUN source ${ALLSOURCES}/thistr16.sh \
 # ROOT_INCLUDE_PATH: lets cling find the 3rdParty plugin headers when autoloading their classes
 ENV EXPLORA_HOME=/opt/explora \
 	ROOT_INCLUDE_PATH=/opt/explora/3rdParty/include
+COPY profiles/${PROFILE}/explora.sh /src/profile/
 COPY vendor/explora /src/TpcExplora
 COPY vendor/plugins /src/plugins
 COPY vendor/PLUGINS vendor/VERSIONS /src/
@@ -86,6 +85,7 @@ RUN sed -i 's|^\(\s*\)TGeoBBox boundingBox = |\1const TGeoBBox \&boundingBox = |
 		plugins/visualisation/CBTShowMagneticField.cpp vmc/base/CBTVirtualMCMagneticFieldMap.cpp \
 	&& sed -i 's|^\(\s*\)fUIDs = NULL; *$|\1fUIDs = NULL; fSize = 0;|' dataobj/CBTRefArray.cpp \
 	&& cp -a /src/plugins/. 3rdParty/ && rm -rf /src/plugins \
+	&& bash /src/profile/explora.sh \
 	&& : > 3rdParty/ExternalPlugins.txt \
 	&& { echo; cat /src/PLUGINS; } >> 3rdParty/CustomPlugins.txt \
 	&& if [ ! -d .git ]; then \
@@ -103,10 +103,11 @@ RUN source ${ALLSOURCES}/thistr16.sh \
 # Freeze the environment of thistr16.sh + thisexplora.sh into a static file. Sourcing those scripts
 # at runtime is fragile: thisroot.sh locates itself via BASH_ARGV, which is wrong whenever the
 # calling script has arguments (e.g. the entrypoint with a multi-line `bash -c` command).
+# (their output is discarded: thisexplora.sh warns when the ROOT version string differs in format)
 RUN env -i HOME=/root PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin \
 		ALLSOURCES=${ALLSOURCES} EXPLORA_HOME=${EXPLORA_HOME} GENFIT=${GENFIT} GENFIT_INCDIR=${GENFIT_INCDIR} \
 		ROOT_INCLUDE_PATH=${ROOT_INCLUDE_PATH} \
-		bash --noprofile --norc -c 'source ${ALLSOURCES}/thistr16.sh && source ${EXPLORA_HOME}/bin/thisexplora.sh && export -p' \
+		bash --noprofile --norc -c 'source ${ALLSOURCES}/thistr16.sh > /dev/null && source ${EXPLORA_HOME}/bin/thisexplora.sh > /dev/null && export -p' \
 	| grep -vE '^declare -x (HOME|PWD|OLDPWD|SHLVL|_)=' > /etc/explora.env \
 	&& grep -q '^declare -x ROOTSYS=' /etc/explora.env \
 	&& echo 'source /etc/explora.env' > /etc/profile.d/explora.sh
@@ -117,6 +118,7 @@ COPY explora-env.sh /usr/local/bin/explora-env
 ARG EXPLORA_REF=unknown
 ARG ALLSOURCES_REF=unknown
 LABEL org.opencontainers.image.title="exploraal" \
+	profile="${PROFILE}" \
 	org.opencontainers.image.description="TpcExplora development image (AlmaLinux 9, allsources, GenFit)" \
 	explora.ref="${EXPLORA_REF}" \
 	allsources.ref="${ALLSOURCES_REF}" \
