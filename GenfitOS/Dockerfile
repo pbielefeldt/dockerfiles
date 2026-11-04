@@ -4,13 +4,13 @@
 #
 # GenFit's own test suite (ctest: streamerTest, unitTests, gtests) runs during the build.
 
-FROM registry.opensuse.org/opensuse/leap:16.0.6.461@sha256:a9273058652f1f7d39f7c8439079662bd387be74013c6b40c9dfc42b228a972c
+FROM registry.opensuse.org/opensuse/leap:16.1.3.79@sha256:65a21515d62c7af67808e7aef29e0bcfdb609d95f9fe811fad7649d56c4b3dfa
 
 ARG GENFIT_REF=02-03-00
 ARG JOBS=4
 
 # ROOT 6 (root6-devel) from the openSUSE science repository, the rest from the default repos.
-# The science repo path follows the Leap version of the base image (16.0 -> science/16.0).
+# The science repo path follows the Leap version of the base image (16.1 -> science/16.1).
 # gcc13-c++: the root6 package was built with gcc 13, and its interpreter (cling) runs `g++-13`
 # at startup to locate the C++ standard library headers, but root6 does not depend on it
 # (Leap 16's default compiler is gcc 15). Without it, every ROOT start prints
@@ -58,7 +58,7 @@ RUN mkdir -p /opt/genfit/src \
 #  present this image as an openSUSE product with the base image's version and date)
 ARG BUILD_DATE=unknown
 LABEL org.opencontainers.image.title="genfit" \
-	org.opencontainers.image.description="GenFit2 on openSUSE Leap 16.0 with ROOT 6 (science repo)" \
+	org.opencontainers.image.description="GenFit2 on openSUSE Leap 16.1 with ROOT 6 (science repo)" \
 	org.opencontainers.image.version="${GENFIT_REF}" \
 	org.opencontainers.image.created="${BUILD_DATE}" \
 	org.opencontainers.image.vendor="Philipp Bielefeldt" \
