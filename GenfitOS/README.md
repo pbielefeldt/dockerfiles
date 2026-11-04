@@ -1,14 +1,14 @@
 # GenfitOS – GenFit2 on openSUSE Leap
 
-Container image with the [GenFit2](https://github.com/GenFit/GenFit) track-fitting library, built from source on **openSUSE Leap 16.0**.
+Container image with the [GenFit2](https://github.com/GenFit/GenFit) track-fitting library, built from source on **openSUSE Leap 16.1**.
 ROOT comes from the openSUSE [science repository](https://download.opensuse.org/repositories/science/).
 
 | Component | Version | Source |
 |---|---|---|
-| Base image | openSUSE Leap 16.0 | `registry.opensuse.org/opensuse/leap:16.0` |
+| Base image | openSUSE Leap 16.1 | `registry.opensuse.org/opensuse/leap:16.1` |
 | ROOT | 6.32 (`root6-devel`) | openSUSE science repo |
 | GenFit2 | `02-03-00` ([release-02-03-00](https://github.com/GenFit/GenFit/releases/tag/02-03-00)) | GitHub tarball, built in the image |
-| Eigen / GoogleTest / GCC | from the Leap 16.0 and science repos | |
+| Eigen / GoogleTest / GCC | from the Leap 16.1 and science repos | |
 
 GenFit's own test suite runs **during the build**: `ctest` with `streamerTest`, `unitTests` and the gtests. The build fails if any test fails.
 
