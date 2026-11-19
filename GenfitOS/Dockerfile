@@ -1,6 +1,6 @@
 # GenfitOS: GenFit2 track-fitting library on openSUSE Leap, with ROOT from the openSUSE science repo.
 #
-#   docker build --tag genfit:02-03-00 .
+#   podman build --format docker --tag genfit:02-03-00 .
 #
 # GenFit's own test suite (ctest: streamerTest, unitTests, gtests) runs during the build.
 

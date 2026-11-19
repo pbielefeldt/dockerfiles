@@ -15,18 +15,17 @@ GenFit's own test suite runs **during the build**: `ctest` with `streamerTest`, 
 ## Build
 
 ```bash
-docker build --tag genfit:02-03-00 .
+podman build --format docker --tag genfit:02-03-00 .
 # another GenFit tag:            --build-arg GENFIT_REF=<tag>
 # parallel compile jobs:         --build-arg JOBS=8
-# podman: add --format docker
 ```
 
-`make.sh` builds and pushes `pbielefeldt/genfit:02-03-00` and `pbielefeldt/genfit:latest` to Docker Hub.
+`make.sh` builds with podman and pushes `pbielefeldt/genfit:<GenFit tag>-<revision>` (currently `02-03-00-2`) and `pbielefeldt/genfit:latest` to Docker Hub. `NO_PUSH=1 ./make.sh` only builds.
 
 ## Use
 
 ```bash
-docker run --rm -it -v "$PWD":/work genfit:02-03-00
+podman run --rm -it -v "$PWD":/work genfit:02-03-00
 ```
 
 Inside the container:
