@@ -1,0 +1,20 @@
+# credentials for the private GitLab instances -- must never reach the image
+.env
+**/.env
+
+# not needed in the image
+README.md
+make.sh
+fetch-sources.sh
+.env.example
+vendor/explora/**/build
+vendor/explora/**/build-*
+vendor/explora/Doxygen*
+vendor/explora/3rdParty/OldStuff
+# prebuilt libgenfit2.so of unknown ROOT ABI; GenFit is built from source instead
+vendor/explora/3rdParty/CBTGenfit2/genfit/lib
+
+# editor / IDE files
+**/*.swp
+**/*~
+**/*.creator.user
